@@ -2,7 +2,7 @@
 
 namespace Ksfraser\Rest_API;
 
-use Ksfraser\FA_ProductAttributes\Dao\ProductAttributesDao;
+use Ksfraser\Rest_API\Contracts\AttributesDaoInterface;
 use Ksfraser\ModulesDAO\Db\DbAdapterInterface;
 
 /**
@@ -10,7 +10,7 @@ use Ksfraser\ModulesDAO\Db\DbAdapterInterface;
  */
 class ApiRouter
 {
-    /** @var ProductAttributesDao */
+    /** @var AttributesDaoInterface */
     private $dao;
 
     /** @var DbAdapterInterface */
@@ -19,7 +19,7 @@ class ApiRouter
     /** @var bool */
     private $testMode = false;
 
-    public function __construct(ProductAttributesDao $dao, DbAdapterInterface $db, bool $testMode = false)
+    public function __construct(AttributesDaoInterface $dao, DbAdapterInterface $db, bool $testMode = false)
     {
         $this->dao = $dao;
         $this->db = $db;

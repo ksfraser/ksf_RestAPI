@@ -1,9 +1,9 @@
 <?php
 
-namespace Ksfraser\FA_ProductAttributes\Test\Api;
+namespace Ksfraser\Rest_API\Test\Api;
 
-use Ksfraser\FA_ProductAttributes\Api\ApiRouter;
-use Ksfraser\FA_ProductAttributes\Dao\ProductAttributesDao;
+use Ksfraser\Rest_API\ApiRouter;
+use Ksfraser\Rest_API\Contracts\AttributesDaoInterface;
 use Ksfraser\ModulesDAO\Db\DbAdapterInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class ApiRouterTest extends TestCase
 {
     public function testHandleCategoriesIndex(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -30,7 +30,7 @@ class ApiRouterTest extends TestCase
 
     public function testHandleCategoriesShow(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -50,7 +50,7 @@ class ApiRouterTest extends TestCase
 
     public function testHandleValuesIndex(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -70,7 +70,7 @@ class ApiRouterTest extends TestCase
 
     public function testHandleAssignmentsIndex(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -90,7 +90,7 @@ class ApiRouterTest extends TestCase
 
     public function testHandleUnknownResource(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $router = new ApiRouter($dao, $db, true);
@@ -107,7 +107,7 @@ class ApiRouterTest extends TestCase
 
     public function testHandleMethodNotAllowed(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $router = new ApiRouter($dao, $db, true);

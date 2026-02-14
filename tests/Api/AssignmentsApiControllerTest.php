@@ -1,9 +1,9 @@
 <?php
 
-namespace Ksfraser\FA_ProductAttributes\Test\Api;
+namespace Ksfraser\Rest_API\Test\Api;
 
-use Ksfraser\FA_ProductAttributes\Api\AssignmentsApiController;
-use Ksfraser\FA_ProductAttributes\Dao\ProductAttributesDao;
+use Ksfraser\Rest_API\AssignmentsApiController;
+use Ksfraser\Rest_API\Contracts\AttributesDaoInterface;
 use Ksfraser\ModulesDAO\Db\DbAdapterInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class AssignmentsApiControllerTest extends TestCase
 {
     public function testIndex(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -35,7 +35,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testShow(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -59,7 +59,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testShowNotFound(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -79,7 +79,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testCreateSuccess(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -122,7 +122,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testCreateInvalidCategory(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -147,7 +147,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testCreateInvalidValue(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -177,7 +177,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testDeleteSuccess(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -202,7 +202,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testDeleteNotFound(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $dao->expects($this->once())
@@ -222,7 +222,7 @@ class AssignmentsApiControllerTest extends TestCase
 
     public function testBulkUpdate(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $db->method('getTablePrefix')->willReturn('fa_');

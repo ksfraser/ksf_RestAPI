@@ -1,9 +1,9 @@
 <?php
 
-namespace Ksfraser\FA_ProductAttributes\Test\Api;
+namespace Ksfraser\Rest_API\Test\Api;
 
-use Ksfraser\FA_ProductAttributes\Api\BaseApiController;
-use Ksfraser\FA_ProductAttributes\Dao\ProductAttributesDao;
+use Ksfraser\Rest_API\BaseApiController;
+use Ksfraser\Rest_API\Contracts\AttributesDaoInterface;
 use Ksfraser\ModulesDAO\Db\DbAdapterInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +14,7 @@ class BaseApiControllerTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         // We can't instantiate BaseApiController directly since it's abstract
@@ -24,7 +24,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testJsonResponseMethodExists(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         // Create a concrete implementation for testing
@@ -40,7 +40,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testJsonResponseOutputsJson(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -63,7 +63,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testErrorResponseMethodExists(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -78,7 +78,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testErrorResponseOutputsErrorJson(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -101,7 +101,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testGetJsonInputWithValidJson(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -121,7 +121,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testValidateRequiredWithValidData(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -140,7 +140,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testValidateRequiredWithMissingField(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
@@ -159,7 +159,7 @@ class BaseApiControllerTest extends TestCase
 
     public function testValidateRequiredWithEmptyField(): void
     {
-        $dao = $this->createMock(ProductAttributesDao::class);
+        $dao = $this->createMock(AttributesDaoInterface::class);
         $db = $this->createMock(DbAdapterInterface::class);
 
         $controller = new class($dao, $db, true) extends BaseApiController {
